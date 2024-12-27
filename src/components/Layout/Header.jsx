@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import query from "jquery";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import $ from "jquery";
+import "select2";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaPhoneAlt, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -17,6 +18,8 @@ const Header = () => {
   const navigate = useNavigate();
   const [searchFilter, setSearchFilter] = useState("");
   const { cartItems, filterClickHandler } = useContext(cartContext);
+  const [categoryFilter, setCategoryFilter] = useState(0);
+  const categorySelect = useRef({});
 
   useEffect(() => {
     getAllCategory();
@@ -37,20 +40,21 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.onscroll = () => {
-      if (window.pageYOffset < 150) {
-        setScroll(false);
-      } else if (window.pageYOffset > 150) {
-        setScroll(true);
-      }
-      return () => (window.onscroll = null);
-    };
-    const selectElement = query(".js-example-basic-single");
-    selectElement.select2();
+    const $selectElement = $(categorySelect.current); // Access the select element with jQuery
 
+    // Initialize select2
+    $selectElement.select2();
+
+    // Add a change event listener
+    $selectElement.on("change", (e) => {
+      setCategoryFilter(e.target.value);
+    });
+
+    // Cleanup on unmount
     return () => {
-      if (selectElement.data("select2")) {
-        selectElement.select2("destroy");
+      if ($selectElement.data("select2")) {
+        $selectElement.off("change"); // Remove event listener
+        $selectElement.select2("destroy"); // Destroy select2 instance
       }
     };
   }, []);
@@ -79,6 +83,15 @@ const Header = () => {
   const [activeIndexCat, setActiveIndexCat] = useState(null);
   const handleCatClick = (index) => {
     setActiveIndexCat(activeIndexCat === index ? null : index);
+  };
+
+  const handleSelectChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  const handleClickFilter = () => {
+    navigate(`/product/${categoryFilter}/0`);
+    filterClickHandler(searchFilter);
   };
 
   return (
@@ -118,7 +131,7 @@ const Header = () => {
       />
       {/* ==================== Search Box Start Here ==================== */}
 
-      <form action="#" className={`search-box ${activeSearch && "active"}`}>
+      <div className={`search-box ${activeSearch && "active"}`}>
         <button
           onClick={handleSearchToggle}
           type="button"
@@ -138,9 +151,7 @@ const Header = () => {
               }}
             />
             <button
-              onClick={() => {
-                filterClickHandler(searchFilter);
-              }}
+              onClick={handleClickFilter}
               type="button"
               className="w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
             >
@@ -148,7 +159,7 @@ const Header = () => {
             </button>
           </div>
         </div>
-      </form>
+      </div>
       {/* ==================== Search Box End Here ==================== */}
       {/* ==================== Mobile Menu Start Here ==================== */}
       <div
@@ -220,17 +231,16 @@ const Header = () => {
             {/* Logo End  */}
             {/* form Category Start */}
             <div className="flex-align gap-16">
-              <form
+              <div
                 action="#"
                 className="flex-align flex-wrap form-location-wrapper"
               >
                 <div className="search-category  style-two d-flex h-48 search-form d-sm-flex d-none">
                   <select
+                    ref={categorySelect}
                     className="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0"
                     name="state"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                    }}
+                    onChange={handleSelectChange}
                   >
                     <option value={0}>All Categories</option>
                     {categorys.map((cat) => (
@@ -254,16 +264,14 @@ const Header = () => {
                     />
                   </div>
                   <button
-                    onClick={() => {
-                      filterClickHandler(searchFilter);
-                    }}
+                    onClick={handleClickFilter}
                     type="button"
                     className="bg-main-two-600 flex-center text-xl text-white flex-shrink-0 w-48 hover-bg-main-two-700 d-lg-flex d-none"
                   >
                     <i className="ph ph-magnifying-glass" />
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
             {/* form Category start */}
             {/* Header Middle Right start */}
@@ -287,10 +295,13 @@ const Header = () => {
                 >
                   <span className="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
                     <i className="ph ph-shopping-cart-simple" />
-                    <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
-                      {Object.keys(cartItems).length || ""}
-                    </span>
+                    {Object.keys(cartItems).length > 0 && (
+                      <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+                        {Object.keys(cartItems).length}
+                      </span>
+                    )}
                   </span>
+
                   <span className="text-md text-white item-hover__text d-none d-lg-flex">
                     Cart
                   </span>

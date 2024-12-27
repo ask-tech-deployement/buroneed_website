@@ -103,6 +103,7 @@ const CartFormSection = () => {
       const products = Object.values(cartItems).map((item) => ({
         name: item.Product_Details_Description,
         quantity: item.productQuantity,
+        image:item.Image
       }));
       await axios.post("/EmailOnEnquiry", { ...data, products });
       setSuccessMessage(true);

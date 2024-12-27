@@ -24,7 +24,7 @@ const Product = () => {
             ?.includes(searchFilter?.toLowerCase())
         );
     setFilteredProducts(newProduct);
-  }, [searchFilter]);
+  }, [searchFilter,products]);
 
   const getProduct = async () => {
     try {

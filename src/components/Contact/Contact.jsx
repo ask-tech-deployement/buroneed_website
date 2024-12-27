@@ -150,6 +150,7 @@ const Contact = () => {
                     <input
                       type="text"
                       className="common-input px-16"
+                      style={{borderColor:!!errors.name?'red':'#E6E6E6'}}
                       id="name"
                       name="name"
                       placeholder="Full name"
@@ -157,9 +158,9 @@ const Contact = () => {
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                   {errors.name &&  <p className="form-text text-danger position-absolute text-xs mt-0">
                       {errors.name}
-                    </p>
+                    </p>}
                   </div>
                   <div className="col-sm-6 col-xs-6">
                     <label
@@ -173,6 +174,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="email"
+                      style={{borderColor:!!errors.email?'red':'#E6E6E6'}}
                       className="common-input px-16"
                       id="email"
                       name="email"
@@ -181,9 +183,9 @@ const Contact = () => {
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                    {errors.email && <p className="form-text text-danger position-absolute text-xs mt-0">
                       {errors.email}
-                    </p>
+                    </p>}
                   </div>
                   <div className="col-sm-6 col-xs-6">
                     <label
@@ -197,6 +199,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="number"
+                      style={{borderColor:!!errors.phone?'red':'#E6E6E6'}}
                       className="common-input px-16"
                       id="phone"
                       name="phone"
@@ -205,9 +208,9 @@ const Contact = () => {
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                    {errors.phone && <p className="form-text text-danger position-absolute text-xs mt-0">
                       {errors.phone}
-                    </p>
+                    </p>}
                   </div>
                   <div className="col-sm-6 col-xs-6">
                     <label
@@ -221,17 +224,18 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      style={{borderColor:!!errors.company?'red':'#E6E6E6'}}
                       className="common-input px-16"
                       id="company"
                       name="company"
-                      placeholder="Subject"
+                      placeholder="Company"
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                    {errors.company && <p className="form-text text-danger position-absolute text-xs mt-0">
                       {" "}
                       {errors.company}
-                    </p>
+                    </p>}
                   </div>
                   <div className="col-sm-12">
                     <label

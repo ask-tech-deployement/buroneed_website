@@ -9,12 +9,6 @@ import EmptyCart from "./EmptyCart";
 const CartSection = () => {
   const { cartItems, setCartItems, deleteCartItem } = useContext(cartContext);
 
-  // Calculate total items
-  const totalItems = Object.values(cartItems).reduce(
-    (sum, item) => sum + item.productQuantity,
-    0
-  );
-
   const handleCartClearConfirmation = () => {
     if (window.confirm("Do you want to clear the cart?")) {
       localStorage.removeItem("cartItems");
@@ -33,7 +27,7 @@ const CartSection = () => {
       <div className="container container-lg">
         <div className="row gy-4">
           {/* Show Total Items or Empty Cart Message */}
-          {totalItems > 0 ? (
+          {Object.keys(cartItems).length > 0 ? (
             <>
               {/* Cart Items Section */}
               <div className="col-lg-7">
@@ -106,7 +100,7 @@ const CartSection = () => {
                   <div className="col-6 text-start">
                     <h6 className="fw-bold">
                       Total Items:{" "}
-                      <span className="text-primary">{totalItems}</span>
+                      <span className="text-primary">{Object.keys(cartItems).length}</span>
                     </h6>
                   </div>
 

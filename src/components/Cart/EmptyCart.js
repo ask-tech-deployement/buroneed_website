@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Box, Typography } from "@mui/material";
 import empty from "../../assets/cart/empty-cart.png";
+import { useNavigate } from "react-router";
 
 const EmptyCart = () => {
+  const navigate=useNavigate()
   return (
     <Box
       display="flex"
@@ -31,7 +33,7 @@ const EmptyCart = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => (window.location.href = "/")} // Adjust the redirect URL as needed
+        onClick={() => navigate('/')} // Adjust the redirect URL as needed
         style={{ marginTop: "20px" }}
       >
         Go to Home
