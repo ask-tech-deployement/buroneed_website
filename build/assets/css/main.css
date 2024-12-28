@@ -8956,6 +8956,7 @@ input:focus-visible {
 .featured-products .product-card, .popular-products .product-card {
     flex-direction: row;
     align-items: unset;
+    flex-wrap: wrap;
 }
 
 .popular-products .product-card__thumb {
@@ -9358,7 +9359,7 @@ input:focus-visible {
 
 /* ========================== Top Brand Section End ================================ */
 /* ================================ Featured Products Css Start ============================ */
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 575px) {
     .featured-products .product-card {
         flex-direction: column;
     }

@@ -151,7 +151,10 @@ const Header = () => {
               }}
             />
             <button
-              onClick={handleClickFilter}
+              onClick={() => {
+                handleClickFilter();
+                handleSearchToggle();
+              }}
               type="button"
               className="w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
             >
@@ -533,9 +536,11 @@ const Header = () => {
                   >
                     <span className="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
                       <i className="ph ph-shopping-cart-simple" />
-                      <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
-                        {Object.keys(cartItems).length || ""}
-                      </span>
+                      {Object.keys(cartItems).length > 0 && (
+                        <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+                          {Object.keys(cartItems).length || ""}
+                        </span>
+                      )}
                     </span>
                     <span className="text-md text-white item-hover__text d-none d-lg-flex">
                       Cart

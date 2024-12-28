@@ -9358,7 +9358,7 @@ input:focus-visible {
 
 /* ========================== Top Brand Section End ================================ */
 /* ================================ Featured Products Css Start ============================ */
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 575px) {
     .featured-products .product-card {
         flex-direction: column;
     }

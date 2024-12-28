@@ -116,7 +116,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                     >
                       <div className="col-xxl-6 ">
                         <div className="">
-                          <div className="mt-24 product-card d-flex gap-16 p-16    transition-2">
+                          <div className="mt-24 product-card d-flex gap-16 p-16 transition-2">
                             <img
                               src={
                                 product.Image
