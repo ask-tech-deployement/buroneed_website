@@ -187,7 +187,7 @@ const Header = () => {
           <div className="mobile-menu__menu">
             {/* Nav Menu Start */}
 
-            <ul className="nav-menu flex-align nav-menu--mobile">
+            <ul className="nav-menu flex-align nav-menu--mobile text-start">
               <li
                 onClick={() => handleMenuClick(0)}
                 className="nav-menu__item "
@@ -238,7 +238,7 @@ const Header = () => {
                 action="#"
                 className="flex-align flex-wrap form-location-wrapper"
               >
-                <div className="search-category  style-two d-flex h-48 search-form d-sm-flex d-none">
+                <div className="search-category style-two d-flex h-48 search-form">
                   <select
                     ref={categorySelect}
                     className="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0"
@@ -351,12 +351,12 @@ const Header = () => {
                   >
                     <i className="ph ph-x" />{" "}
                   </button>
-                  <div className="logo px-16 d-lg-none d-block">
+                  <div className="logo p-16 d-lg-none d-block text-center">
                     <Link to="/" className="link">
                       <img src={whiteLogo} alt="Logo" />
                     </Link>
                   </div>
-                  <ul className="scroll-sm p-0 py-8 overflow-y-auto">
+                  <ul className="scroll-sm p-0 py-8">
                     {categorys?.map((mcat) => (
                       <li
                         key={mcat.MainCategory_Id}

@@ -23,7 +23,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="footer-item">
+          <div className="footer-item" style={{maxWidth: "500px"}}>
             <div className="flex-align gap-16 mb-16">
               <FaPhoneAlt />
               <a
@@ -33,7 +33,7 @@ const Footer = () => {
                 +91 97411 55473
               </a>
             </div>
-            <div className="flex-align gap-16 mb-16">
+            <div className="flex-align gap-16 mb-16" >
               <MdEmail />
               <a
                 href="mailto:kishore@buroneed.com"

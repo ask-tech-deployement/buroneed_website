@@ -15,7 +15,7 @@ const Home = () => {
       {/* <Preloader /> */}
       <Banner />
       <PromotionalOneBuroNeel />
-      <FeaturedOneHome title="Stationeries" categoryid={10015} />
+      <FeaturedOneHome title="Office Furnitures" categoryid={10015} />
       <Promotional2 />
       <ProductSlider title="Office Stationery" categoryid={1} />
       <PromotionalBanner1 />

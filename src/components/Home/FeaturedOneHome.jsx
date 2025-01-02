@@ -92,14 +92,14 @@ const FeaturedOneHome = ({ title, categoryid }) => {
     <section className="featured-products my-30">
       <div className="container container-lg">
         <div className="row g-4 flex-wrap-reverse">
-          <div className="col-xxl-8">
+          <div className="col-xl-8">
             <div className="border border-gray-100 p-24 rounded-16">
               <div className="section-heading mb-24">
                 <div className="flex-between flex-wrap gap-8">
-                  <h5 className="mb-0">Office Furnitures </h5>
+                  <h5 className="mb-0">{title} </h5>
                   <div className="flex-align mr-point gap-16">
                     <Link
-                      to="/product/10015/20018"
+                      to={`/product/${categoryid}/0`}
                       className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                     >
                       View All Deals
@@ -123,17 +123,11 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                                   ? `${imageURL}/${product.Image}`
                                   : noimg
                               }
-                              style={{ objectFit: "contain" }}
+                              style={{ objectFit: "contain", maxHeight:'180px' }}
                             />
                             <div className="product-card__content my-20 flex-grow-1">
-                              <h6 className="title text-lg fw-semibold mb-12">
-                                <Link
-                                  to="/product-details-two"
-                                  className="link text-line-2"
-                                  tabIndex={0}
-                                >
+                              <h6 className="title text-lg fw-semibold mb-12 text-line-2">
                                   {product.Product_Details_Description}
-                                </Link>
                               </h6>
 
                               <div className="product-card__price mt-14">
@@ -163,17 +157,11 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                                   ? `${imageURL}/${product.Image}`
                                   : noimg
                               }
-                              style={{ objectFit: "contain" }}
+                              style={{ objectFit: "contain", maxHeight:'180px' }}
                             />
                             <div className="product-card__content my-20 flex-grow-1">
-                              <h6 className="title text-lg fw-semibold mb-12">
-                                <Link
-                                  // to="/product/10015/20018"
-                                  className="link text-line-2"
-                                  tabIndex={0}
-                                >
+                              <h6 className="title text-lg fw-semibold mb-12 text-line-2">
                                   {product.Product_Details_Description}
-                                </Link>
                               </h6>
 
                               <div className="product-card__price mt-14">
@@ -189,7 +177,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
               </div>
             </div>
           </div>
-          <div className="col-xxl-4">
+          <div className="col-xl-4">
             <div className="position-relative rounded-16 bg-light-purple overflow-hidden p-28 pb-0 z-1 text-center h-100">
               <img
                 src="assets/images/bg/featured-product-bg.png"
@@ -202,7 +190,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                 </span>
 
                 <Link
-                  to="/product/10015/20018"
+                  to={`/product/${categoryid}/0`}
                   className="mt-16 mb-24 btn btn-main-two fw-medium d-inline-flex align-items-center rounded-pill gap-8"
                   tabIndex={0}
                 >
@@ -215,7 +203,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
               <img
                 src={chairo}
                 alt=""
-                className="d-xxl-inline-flex d-none"
+                className="d-xl-inline-flex d-none"
                 style={{ objectFit: "contain", maxHeight: "449px" }}
               />
             </div>
