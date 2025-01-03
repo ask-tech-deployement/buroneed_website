@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import "select2";
+import query from "jquery";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaPhoneAlt, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -13,7 +14,28 @@ import axios from "../../axios";
 import cartContext from "../Context/cartContext";
 
 const Header = () => {
+
   const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.pageYOffset < 150) {
+        setScroll(false);
+      } else if (window.pageYOffset > 150) {
+        setScroll(true);
+      }
+      return () => (window.onscroll = null);
+    };
+    const selectElement = query(".js-example-basic-single");
+    selectElement.select2();
+
+    return () => {
+      if (selectElement.data("select2")) {
+        selectElement.select2("destroy");
+      }
+    };
+  }, []);
+
   const [categorys, setCategorys] = useState([]);
   const navigate = useNavigate();
   const [searchFilter, setSearchFilter] = useState("");
